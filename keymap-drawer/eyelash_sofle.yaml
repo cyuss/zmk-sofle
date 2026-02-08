@@ -39,7 +39,7 @@ layers:
   - K
   - L
   - {t: ;, s: ':'}
-  - $$mdi:apple-keyboard-control$$
+  - {t: '$$mdi:keyboard-esc$$', h: 'Gui+Alt+Sft+$$mdi:apple-keyboard-control$$'}
   - $$mdi:apple-keyboard-shift$$
   - Z
   - X
@@ -209,8 +209,8 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - '&ARROW_L'
+  - '&TRIPLE_DQ'
   - Sft+@
   - Sft+#
   - Sft+$
@@ -222,7 +222,7 @@ layers:
   - {t: ']', s: '}'}
   - {t: \, s: '|'}
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - '&ARROW_R'
   - Sft+!
   - Sft+?
   - Sft+"
