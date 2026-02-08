@@ -65,6 +65,27 @@
 
             label = "SHIFT_MCLK";
         };
+
+        TRIPLE_DQ: TRIPLE_DQ {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp DQT &kp DQT &kp DQT>;
+            label = "TRIPLE_DQ";
+        };
+
+        ARROW_L: ARROW_L {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LT &kp MINUS>;
+            label = "ARROW_L";
+        };
+
+        ARROW_R: ARROW_R {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp MINUS &kp GT>;
+            label = "ARROW_R";
+        };
     };
 
     keymap {
@@ -73,8 +94,8 @@
         Base {
             bindings = <
 &kp ESC           &kp N1        &kp N2        &kp N3  &kp N4     &kp N5    &kp UP_ARROW     &kp N6  &kp N7     &kp N8     &kp N9        &kp N0        &kp BACKSPACE
-&kp TAB           &kp Q         &kp W         &kp E   &kp R      &kp T     &kp DOWN_ARROW   &kp Y   &kp U      &kp I      &kp O         &kp P         &kp BSLH
-&kp LEFT_CONTROL  &kp A         &kp S         &kp D   &kp F      &kp G     &kp LEFT_ARROW   &kp H   &kp J      &kp K      &kp L         &kp SEMI      &kp LCTRL
+&kp TAB           &kp Q         &kp W         &kp E   &kp R      &kp T     &kp DOWN_ARROW   &kp Y   &kp U      &kp I      &kp O         &kp P         &kp BACKSLASH
+&kp LEFT_CONTROL  &kp A         &kp S         &kp D   &kp F      &kp G     &kp LEFT_ARROW   &kp H   &kp J      &kp K      &kp L         &kp SEMI      &mt LG(LA(LS(LCTRL))) ESCAPE
 &kp LSHFT         &kp Z         &kp X         &kp C   &kp V      &kp B     &kp RIGHT_ARROW  &kp N   &kp M      &kp COMMA  &kp DOT       &kp FSLH      &kp RIGHT_SHIFT
 &kp C_MUTE        &kp LEFT_ALT  &kp LEFT_GUI  &to 4   &kp SPACE  &to 3     &kp ENTER        &to 1   &kp ENTER  &mo 2      &kp LEFT_GUI  &kp LEFT_ALT
             >;
@@ -111,11 +132,11 @@
 
         Symbols {
             bindings = <
-&trans  &trans        &trans         &trans         &trans        &trans           &trans  &trans         &trans        &trans      &trans      &trans        &trans
-&trans  &trans        &kp LS(AT)     &kp LS(POUND)  &kp LS(DLLR)  &kp LS(PRCNT)    &trans  &kp LS(LPAR)   &kp LS(RPAR)  &kp LBKT    &kp RBKT    &kp BSLH      &trans
-&trans  &kp LS(EXCL)  &kp LS(QMARK)  &kp LS(DQT)    &kp SQT       &kp LS(UNDER)    &trans  &kp LS(LBRC)   &kp LS(RBRC)  &kp LS(LT)  &kp LS(GT)  &kp LS(PIPE)  &trans
-&trans  &trans        &kp LS(STAR)   &kp EQUAL      &kp LS(PLUS)  &kp MINUS        &trans  &kp LS(CARET)  &kp LS(AMPS)  &kp COMMA   &kp DOT     &kp FSLH      &trans
-&trans  &trans        &trans         &trans         &trans        &trans           &trans  &trans         &trans        &trans      &trans      &trans
+&trans    &trans        &trans         &trans         &trans        &trans           &trans  &trans         &trans        &trans      &trans      &trans        &trans
+&ARROW_L  &TRIPLE_DQ    &kp LS(AT)     &kp LS(POUND)  &kp LS(DLLR)  &kp LS(PRCNT)    &trans  &kp LS(LPAR)   &kp LS(RPAR)  &kp LBKT    &kp RBKT    &kp BSLH      &trans
+&ARROW_R  &kp LS(EXCL)  &kp LS(QMARK)  &kp LS(DQT)    &kp SQT       &kp LS(UNDER)    &trans  &kp LS(LBRC)   &kp LS(RBRC)  &kp LS(LT)  &kp LS(GT)  &kp LS(PIPE)  &trans
+&trans    &trans        &kp LS(STAR)   &kp EQUAL      &kp LS(PLUS)  &kp MINUS        &trans  &kp LS(CARET)  &kp LS(AMPS)  &kp COMMA   &kp DOT     &kp FSLH      &trans
+&trans    &trans        &trans         &trans         &trans        &trans           &trans  &trans         &trans        &trans      &trans      &trans
             >;
 
             display-name = "layer3";
