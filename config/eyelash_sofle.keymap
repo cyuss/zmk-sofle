@@ -44,9 +44,7 @@
             label = "HM";
             #binding-cells = <2>;
             flavor = "tap-preferred";
-            tapping-term-ms = <140>;
-            quick-tap-ms = <45>;
-            require-prior-idle-ms = <120>;
+            tapping-term-ms = <200>;
             bindings = <&kp>, <&kp>;
         };
     };
