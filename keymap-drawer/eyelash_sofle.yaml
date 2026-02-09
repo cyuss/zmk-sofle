@@ -210,40 +210,40 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - '&ARROW_L'
-  - '&TRIPLE_DQ'
-  - Sft+@
-  - Sft+#
-  - Sft+$
-  - Sft+%
+  - '@'
+  - ':'
+  - '#'
+  - $
+  - '%'
   - {t: '$$mdi:transfer$$', type: trans}
-  - Sft+(
-  - Sft+)
+  - (
+  - )
   - {t: '[', s: '{'}
   - {t: ']', s: '}'}
   - {t: \, s: '|'}
   - {t: '$$mdi:transfer$$', type: trans}
   - '&ARROW_R'
-  - Sft+!
-  - Sft+?
-  - Sft+"
+  - '!'
+  - '?'
+  - '"'
   - {t: '''', s: '"'}
-  - Sft+_
+  - _
   - {t: '$$mdi:transfer$$', type: trans}
-  - Sft+{
-  - Sft+}
-  - Sft+<
-  - Sft+>
-  - Sft+|
+  - '{'
+  - '}'
+  - <
+  - '>'
+  - '|'
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - ':'
-  - Sft+*
+  - '&TRIPLE_DQ'
+  - {t: '`', s: '~'}
+  - '*'
   - {t: '=', s: +}
-  - Sft++
+  - +
   - {t: '-', s: _}
   - {t: '$$mdi:transfer$$', type: trans}
-  - Sft+^
-  - Sft+&
+  - ^
+  - '&'
   - {t: ',', s: <}
   - {t: ., s: '>'}
   - {t: /, s: '?'}
