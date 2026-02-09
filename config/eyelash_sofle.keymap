@@ -101,7 +101,7 @@
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOL_DN>;
-            display-name = "LAYER0";
+            display-name = "Base";
         };
 
         Nav {
@@ -113,7 +113,7 @@
 &kp C_BRIGHTNESS_MAXIMUM  &trans  &trans        &trans        &trans        &trans          &mkp LCLK        &trans     &trans    &trans      &trans     &trans
             >;
 
-            display-name = "layer1";
+            display-name = "Nav";
             sensor-bindings = <&inc_dec_kp C_BRIGHTNESS_INC C_BRIGHTNESS_DEC>;
         };
 
@@ -126,7 +126,7 @@
 &trans     &trans        &trans          &trans        &trans        &trans          &mkp LCLK        &trans  &trans        &trans           &trans           &trans
             >;
 
-            display-name = "layer2";
+            display-name = "System";
             sensor-bindings = <&scroll_encoder>;
         };
 
@@ -139,7 +139,7 @@
 &trans      &trans     &trans        &trans             &trans      &trans            &trans  &trans                &trans                 &trans         &trans            &trans
             >;
 
-            display-name = "layer3";
+            display-name = "Symbols";
             sensor-bindings = <&scroll_encoder>;
         };
 
@@ -152,7 +152,7 @@
 &trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
             >;
 
-            display-name = "layer4";
+            display-name = "Macros";
             sensor-bindings = <&scroll_encoder>;
         };
     };
