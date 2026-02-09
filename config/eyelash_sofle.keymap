@@ -132,11 +132,11 @@
 
         Symbols {
             bindings = <
-&trans    &trans        &trans         &trans         &trans        &trans           &trans  &trans         &trans        &trans      &trans      &trans        &trans
-&ARROW_L  &TRIPLE_DQ    &kp LS(AT)     &kp LS(POUND)  &kp LS(DLLR)  &kp LS(PRCNT)    &trans  &kp LS(LPAR)   &kp LS(RPAR)  &kp LBKT    &kp RBKT    &kp BSLH      &trans
-&ARROW_R  &kp LS(EXCL)  &kp LS(QMARK)  &kp LS(DQT)    &kp SQT       &kp LS(UNDER)    &trans  &kp LS(LBRC)   &kp LS(RBRC)  &kp LS(LT)  &kp LS(GT)  &kp LS(PIPE)  &trans
-&trans    &kp COLON     &kp LS(STAR)   &kp EQUAL      &kp LS(PLUS)  &kp MINUS        &trans  &kp LS(CARET)  &kp LS(AMPS)  &kp COMMA   &kp DOT     &kp FSLH      &trans
-&trans    &trans        &trans         &trans         &trans        &trans           &trans  &trans         &trans        &trans      &trans      &trans
+&trans      &trans     &trans        &trans             &trans      &trans            &trans  &trans                &trans                 &trans         &trans            &trans    &trans
+&ARROW_L    &kp AT     &kp COLON     &kp HASH           &kp DOLLAR  &kp PERCENT       &trans  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp LBKT       &kp RBKT          &kp BSLH  &trans
+&ARROW_R    &kp EXCL   &kp QUESTION  &kp DOUBLE_QUOTES  &kp SQT     &kp UNDERSCORE    &trans  &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp LESS_THAN  &kp GREATER_THAN  &kp PIPE  &trans
+&TRIPLE_DQ  &kp GRAVE  &kp STAR      &kp EQUAL          &kp PLUS    &kp MINUS         &trans  &kp CARET             &kp AMPS               &kp COMMA      &kp DOT           &kp FSLH  &trans
+&trans      &trans     &trans        &trans             &trans      &trans            &trans  &trans                &trans                 &trans         &trans            &trans
             >;
 
             display-name = "layer3";
