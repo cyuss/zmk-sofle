@@ -39,6 +39,17 @@
     };
 
     behaviors {
+        hm: hm {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HM";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <175>;
+            quick-tap-ms = <45>;
+            require-prior-idle-ms = <120>;
+
+            bindings = <&kp>, <&kp>;
+        };
     };
 
     combos {
