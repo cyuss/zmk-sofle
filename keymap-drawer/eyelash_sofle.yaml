@@ -27,7 +27,7 @@ layers:
   - O
   - P
   - {t: '`', s: '~'}
-  - $$mdi:apple-keyboard-control$$
+  - {t: '$$mdi:keyboard-esc$$', h: 'Gui+Alt+Sft+$$mdi:apple-keyboard-control$$'}
   - {t: A, s: '$$mdi:apple-keyboard-command$$'}
   - {t: S, s: '$$mdi:apple-keyboard-option$$'}
   - {t: D, h: '$$mdi:apple-keyboard-shift$$'}
