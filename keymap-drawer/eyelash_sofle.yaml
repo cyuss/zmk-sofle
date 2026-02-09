@@ -209,9 +209,9 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - '&ARROW_L'
+  - {t: '$$mdi:transfer$$', type: trans}
   - '@'
-  - ':'
+  - {t: Sft+;, s: 'Sft+:'}
   - '#'
   - $
   - '%'
@@ -222,7 +222,7 @@ layers:
   - {t: ']', s: '}'}
   - {t: \, s: '|'}
   - {t: '$$mdi:transfer$$', type: trans}
-  - '&ARROW_R'
+  - {t: '$$mdi:transfer$$', type: trans}
   - '!'
   - '?'
   - '"'
@@ -235,7 +235,7 @@ layers:
   - '>'
   - '|'
   - {t: '$$mdi:transfer$$', type: trans}
-  - '&TRIPLE_DQ'
+  - {t: '$$mdi:transfer$$', type: trans}
   - {t: '`', s: '~'}
   - '*'
   - {t: '=', s: +}
