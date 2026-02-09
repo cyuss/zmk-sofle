@@ -47,7 +47,6 @@
             tapping-term-ms = <140>;
             quick-tap-ms = <45>;
             require-prior-idle-ms = <120>;
-
             bindings = <&kp>, <&kp>;
         };
     };
@@ -106,7 +105,7 @@
             bindings = <
 &kp ESC           &kp N1          &kp N2          &kp N3            &kp N4       &kp N5    &kp UP_ARROW     &kp N6  &kp N7       &kp N8             &kp N9           &kp N0              &kp BACKSPACE
 &kp TAB           &kp Q           &kp W           &kp E             &kp R        &kp T     &kp DOWN_ARROW   &kp Y   &kp U        &kp I              &kp O            &kp P               &kp GRAVE
-&kp LEFT_CONTROL  &mt LEFT_GUI A  &mt LEFT_ALT S  &mt LEFT_SHIFT D  &mt LCTRL F  &kp G     &kp LEFT_ARROW   &kp H   &mt RCTRL J  &mt RIGHT_SHIFT K  &mt RIGHT_ALT L  &mt RIGHT_GUI SEMI  &mt LG(LA(LS(LCTRL))) ESCAPE
+&kp LEFT_CONTROL  &hm LEFT_GUI A  &hm LEFT_ALT S  &hm LEFT_SHIFT D  &hm LCTRL F  &kp G     &kp LEFT_ARROW   &kp H   &hm RCTRL J  &hm RIGHT_SHIFT K  &hm RIGHT_ALT L  &hm RIGHT_GUI SEMI  &mt LG(LA(LS(LCTRL))) ESCAPE
 &kp LSHFT         &kp Z           &kp X           &kp C             &kp V        &kp B     &kp RIGHT_ARROW  &kp N   &kp M        &kp COMMA          &kp DOT          &kp FSLH            &kp RIGHT_SHIFT
 &kp C_MUTE        &kp LEFT_ALT    &kp LEFT_GUI    &to 4             &kp SPACE    &to 3     &kp ENTER        &to 1   &kp ENTER    &mo 2              &kp LEFT_GUI     &kp LEFT_ALT
             >;
