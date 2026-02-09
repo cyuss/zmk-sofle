@@ -141,11 +141,11 @@
 
         Symbols {
             bindings = <
-&trans      &trans     &trans        &trans             &trans      &trans            &trans  &trans                &trans                 &trans         &trans            &trans    &trans
-&ARROW_L    &kp AT     &kp COLON     &kp HASH           &kp DOLLAR  &kp PERCENT       &trans  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp LBKT       &kp RBKT          &kp BSLH  &trans
-&ARROW_R    &kp EXCL   &kp QUESTION  &kp DOUBLE_QUOTES  &kp SQT     &kp UNDERSCORE    &trans  &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp LESS_THAN  &kp GREATER_THAN  &kp PIPE  &trans
-&TRIPLE_DQ  &kp GRAVE  &kp STAR      &kp EQUAL          &kp PLUS    &kp MINUS         &trans  &kp CARET             &kp AMPS               &kp COMMA      &kp DOT           &kp FSLH  &trans
-&trans      &trans     &trans        &trans             &trans      &trans            &trans  &trans                &trans                 &trans         &trans            &trans
+&trans  &trans     &trans             &trans             &trans      &trans            &trans  &trans                &trans                 &trans         &trans            &trans    &trans
+&trans  &kp AT     &kp LS(SEMICOLON)  &kp HASH           &kp DOLLAR  &kp PERCENT       &trans  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp LBKT       &kp RBKT          &kp BSLH  &trans
+&trans  &kp EXCL   &kp QUESTION       &kp DOUBLE_QUOTES  &kp SQT     &kp UNDERSCORE    &trans  &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp LESS_THAN  &kp GREATER_THAN  &kp PIPE  &trans
+&trans  &kp GRAVE  &kp STAR           &kp EQUAL          &kp PLUS    &kp MINUS         &trans  &kp CARET             &kp AMPS               &kp COMMA      &kp DOT           &kp FSLH  &trans
+&trans  &trans     &trans             &trans             &trans      &trans            &trans  &trans                &trans                 &trans         &trans            &trans
             >;
 
             display-name = "Symbols";
