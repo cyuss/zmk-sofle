@@ -55,8 +55,6 @@ static void draw_top(lv_obj_t *widget, lv_color_t cbuf[], const struct status_st
     init_label_dsc(&label_dsc_wpm, LVGL_FOREGROUND, &lv_font_unscii_8, LV_TEXT_ALIGN_RIGHT);
     lv_draw_label_dsc_t label_dsc_pct;
     init_label_dsc(&label_dsc_pct, LVGL_FOREGROUND, &lv_font_unscii_8, LV_TEXT_ALIGN_LEFT);
-    lv_draw_label_dsc_t label_dsc_hdr;
-    init_label_dsc(&label_dsc_hdr, LVGL_FOREGROUND, &lv_font_unscii_8, LV_TEXT_ALIGN_LEFT);
     lv_draw_rect_dsc_t rect_black_dsc;
     init_rect_dsc(&rect_black_dsc, LVGL_BACKGROUND);
     lv_draw_rect_dsc_t rect_white_dsc;
@@ -67,25 +65,25 @@ static void draw_top(lv_obj_t *widget, lv_color_t cbuf[], const struct status_st
     // Fill background
     lv_canvas_draw_rect(canvas, 0, 0, CANVAS_SIZE, CANVAS_SIZE, &rect_black_dsc);
 
-    // Small battery icon (16x9 + nub) with proportional fill
-    lv_canvas_draw_rect(canvas, 0, 4, 16, 9, &rect_white_dsc);
-    lv_canvas_draw_rect(canvas, 1, 5, 14, 7, &rect_black_dsc);
-    lv_canvas_draw_rect(canvas, 2, 6, (state->battery * 12 + 50) / 100, 5, &rect_white_dsc);
-    lv_canvas_draw_rect(canvas, 16, 6, 2, 5, &rect_white_dsc);
+    // Small battery icon (15x9 + nub) with proportional fill
+    lv_canvas_draw_rect(canvas, 0, 4, 15, 9, &rect_white_dsc);
+    lv_canvas_draw_rect(canvas, 1, 5, 13, 7, &rect_black_dsc);
+    lv_canvas_draw_rect(canvas, 2, 6, (state->battery * 11 + 50) / 100, 5, &rect_white_dsc);
+    lv_canvas_draw_rect(canvas, 15, 6, 2, 5, &rect_white_dsc);
 
     if (state->charging) {
         // tiny lightning zigzag over the battery
-        lv_canvas_draw_rect(canvas, 8, 5, 1, 2, &rect_black_dsc);
-        lv_canvas_draw_rect(canvas, 6, 7, 4, 1, &rect_black_dsc);
-        lv_canvas_draw_rect(canvas, 8, 8, 1, 2, &rect_black_dsc);
-        lv_canvas_draw_rect(canvas, 7, 5, 1, 3, &rect_white_dsc);
-        lv_canvas_draw_rect(canvas, 8, 7, 1, 3, &rect_white_dsc);
+        lv_canvas_draw_rect(canvas, 7, 5, 1, 2, &rect_black_dsc);
+        lv_canvas_draw_rect(canvas, 5, 7, 4, 1, &rect_black_dsc);
+        lv_canvas_draw_rect(canvas, 7, 8, 1, 2, &rect_black_dsc);
+        lv_canvas_draw_rect(canvas, 6, 5, 1, 3, &rect_white_dsc);
+        lv_canvas_draw_rect(canvas, 7, 7, 1, 3, &rect_white_dsc);
     }
 
-    // Battery percentage, small, right of the icon
+    // Battery percentage, small, right of the icon (fits "100%")
     char pct[6] = {};
     snprintf(pct, sizeof(pct), "%d%%", state->battery);
-    lv_canvas_draw_text(canvas, 20, 5, 30, &label_dsc_pct, pct);
+    lv_canvas_draw_text(canvas, 19, 5, 33, &label_dsc_pct, pct);
 
     // Draw output status
     char output_text[10] = {};
@@ -109,15 +107,13 @@ static void draw_top(lv_obj_t *widget, lv_color_t cbuf[], const struct status_st
 
     lv_canvas_draw_text(canvas, 0, 0, CANVAS_SIZE, &label_dsc, output_text);
 
-    // WPM graph frame (ends at y=52 to keep a clear gap before the profile circles)
-    lv_canvas_draw_rect(canvas, 0, 20, 68, 33, &rect_white_dsc);
-    lv_canvas_draw_rect(canvas, 1, 21, 66, 31, &rect_black_dsc);
+    // WPM graph frame — taller, no label, just the current value
+    lv_canvas_draw_rect(canvas, 0, 16, 68, 42, &rect_white_dsc);
+    lv_canvas_draw_rect(canvas, 1, 17, 66, 40, &rect_black_dsc);
 
-    // Header inside the frame: label left, current value right
-    lv_canvas_draw_text(canvas, 3, 22, 30, &label_dsc_hdr, "WPM");
     char wpm_text[6] = {};
     snprintf(wpm_text, sizeof(wpm_text), "%d", state->wpm[9]);
-    lv_canvas_draw_text(canvas, 34, 22, 31, &label_dsc_wpm, wpm_text);
+    lv_canvas_draw_text(canvas, 34, 19, 31, &label_dsc_wpm, wpm_text);
 
     int max = 0;
     int min = 256;
@@ -136,17 +132,17 @@ static void draw_top(lv_obj_t *widget, lv_color_t cbuf[], const struct status_st
         range = 1;
     }
 
-    // Plot area: y in [33..50]
+    // Plot area: y in [31..55]
     lv_point_t points[10];
     for (int i = 0; i < 10; i++) {
         points[i].x = 3 + i * 7;
-        points[i].y = 50 - (state->wpm[i] - min) * 17 / range;
+        points[i].y = 55 - (state->wpm[i] - min) * 24 / range;
     }
 
     // Dotted horizontal gridlines at 1/3 and 2/3 of the plot area
     for (int x = 3; x <= 64; x += 4) {
-        lv_canvas_draw_rect(canvas, x, 38, 1, 1, &rect_white_dsc);
-        lv_canvas_draw_rect(canvas, x, 44, 1, 1, &rect_white_dsc);
+        lv_canvas_draw_rect(canvas, x, 39, 1, 1, &rect_white_dsc);
+        lv_canvas_draw_rect(canvas, x, 47, 1, 1, &rect_white_dsc);
     }
 
     // Dotted fill under the curve (dithered columns every 2 px)
@@ -158,7 +154,7 @@ static void draw_top(lv_obj_t *widget, lv_color_t cbuf[], const struct status_st
         int x0 = points[seg].x, y0 = points[seg].y;
         int x1 = points[seg + 1].x, y1 = points[seg + 1].y;
         int yc = y0 + (y1 - y0) * (x - x0) / (x1 - x0 == 0 ? 1 : x1 - x0);
-        for (int yy = yc + 2; yy <= 50; yy += 3) {
+        for (int yy = yc + 2; yy <= 55; yy += 3) {
             lv_canvas_draw_rect(canvas, x, yy, 1, 1, &rect_white_dsc);
         }
     }

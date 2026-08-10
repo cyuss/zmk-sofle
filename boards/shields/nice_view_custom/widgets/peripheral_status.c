@@ -39,6 +39,16 @@ struct peripheral_status_state {
 #define EQ_BARS 12
 #define EQ_MAX 16
 
+// Canvas children. Each 68x68 canvas is rotated 90 deg, so a pixel drawn at
+// source row y lands at x = 68 - y inside the canvas. The canvases are placed
+// so the equalizer, the atom and the info block each get a clear band, with the
+// atom centred on the 160 px long screen (its canvas starts at x = 46).
+// Creation order matters: the atom is created last so it paints over the
+// overlapping edges of the two others.
+#define CHILD_EQ 0
+#define CHILD_INFO 1
+#define CHILD_ATOM 2
+
 static uint32_t anim_frame = 0;
 static uint32_t key_count = 0;
 static uint8_t eq_levels[EQ_BARS];
@@ -64,9 +74,9 @@ static const int16_t TRIG[ORBIT_STEPS][2] = {
 // {cos, sin} * 100 of the three orbit tilts (30, 90, 150 degrees)
 static const int16_t ORB[3][2] = {{87, 50}, {0, 100}, {-87, 50}};
 
-// background stars (x, y, phase)
-static const uint8_t STARS[7][3] = {
-    {6, 6, 0}, {60, 10, 3}, {10, 56, 6}, {62, 60, 1}, {34, 4, 4}, {4, 34, 2}, {63, 36, 5},
+// background stars in the atom canvas corners, clear of the orbits (x, y, phase)
+static const uint8_t STARS[6][3] = {
+    {4, 5, 0}, {63, 7, 3}, {5, 62, 5}, {62, 63, 1}, {10, 12, 4}, {58, 57, 2},
 };
 
 static void ellipse_point(int orbit, int t, lv_point_t *p) {
@@ -77,7 +87,7 @@ static void ellipse_point(int orbit, int t, lv_point_t *p) {
 }
 
 static void draw_atom(lv_obj_t *widget, lv_color_t cbuf[], uint32_t frame) {
-    lv_obj_t *canvas = lv_obj_get_child(widget, 1);
+    lv_obj_t *canvas = lv_obj_get_child(widget, CHILD_ATOM);
 
     lv_draw_rect_dsc_t rect_bg;
     init_rect_dsc(&rect_bg, LVGL_BACKGROUND);
@@ -93,7 +103,7 @@ static void draw_atom(lv_obj_t *widget, lv_color_t cbuf[], uint32_t frame) {
     lv_canvas_draw_rect(canvas, 0, 0, CANVAS_SIZE, CANVAS_SIZE, &rect_bg);
 
     // twinkling stars: each blinks on/off with its own phase
-    for (int s = 0; s < 7; s++) {
+    for (int s = 0; s < 6; s++) {
         if (((frame / 4) + STARS[s][2]) % 3 != 0) {
             lv_canvas_draw_rect(canvas, STARS[s][0], STARS[s][1], 1, 1, &rect_fg);
         }
@@ -158,9 +168,10 @@ static void draw_atom(lv_obj_t *widget, lv_color_t cbuf[], uint32_t frame) {
     rotate_canvas(canvas, cbuf);
 }
 
-// Top: small battery icon + small percentage right of it, link symbol at the right.
+// Info: small battery icon + small percentage right of it, link symbol at the right.
+// Kept in rows y < 46 so the atom canvas never overlaps it.
 static void draw_top(lv_obj_t *widget, lv_color_t cbuf[], const struct status_state *state) {
-    lv_obj_t *canvas = lv_obj_get_child(widget, 0);
+    lv_obj_t *canvas = lv_obj_get_child(widget, CHILD_INFO);
 
     lv_draw_label_dsc_t label_dsc;
     init_label_dsc(&label_dsc, LVGL_FOREGROUND, &lv_font_montserrat_14, LV_TEXT_ALIGN_RIGHT);
@@ -173,25 +184,25 @@ static void draw_top(lv_obj_t *widget, lv_color_t cbuf[], const struct status_st
 
     lv_canvas_draw_rect(canvas, 0, 0, CANVAS_SIZE, CANVAS_SIZE, &rect_bg);
 
-    // Small battery icon (16x9 + nub) with proportional fill
-    lv_canvas_draw_rect(canvas, 0, 4, 16, 9, &rect_fg);
-    lv_canvas_draw_rect(canvas, 1, 5, 14, 7, &rect_bg);
-    lv_canvas_draw_rect(canvas, 2, 6, (state->battery * 12 + 50) / 100, 5, &rect_fg);
-    lv_canvas_draw_rect(canvas, 16, 6, 2, 5, &rect_fg);
+    // Small battery icon (15x9 + nub) with proportional fill
+    lv_canvas_draw_rect(canvas, 0, 4, 15, 9, &rect_fg);
+    lv_canvas_draw_rect(canvas, 1, 5, 13, 7, &rect_bg);
+    lv_canvas_draw_rect(canvas, 2, 6, (state->battery * 11 + 50) / 100, 5, &rect_fg);
+    lv_canvas_draw_rect(canvas, 15, 6, 2, 5, &rect_fg);
 
     if (state->charging) {
         // tiny lightning zigzag over the battery
-        lv_canvas_draw_rect(canvas, 8, 5, 1, 2, &rect_bg);
-        lv_canvas_draw_rect(canvas, 6, 7, 4, 1, &rect_bg);
-        lv_canvas_draw_rect(canvas, 8, 8, 1, 2, &rect_bg);
-        lv_canvas_draw_rect(canvas, 7, 5, 1, 3, &rect_fg);
-        lv_canvas_draw_rect(canvas, 8, 7, 1, 3, &rect_fg);
+        lv_canvas_draw_rect(canvas, 7, 5, 1, 2, &rect_bg);
+        lv_canvas_draw_rect(canvas, 5, 7, 4, 1, &rect_bg);
+        lv_canvas_draw_rect(canvas, 7, 8, 1, 2, &rect_bg);
+        lv_canvas_draw_rect(canvas, 6, 5, 1, 3, &rect_fg);
+        lv_canvas_draw_rect(canvas, 7, 7, 1, 3, &rect_fg);
     }
 
-    // Battery percentage, small, right of the icon
+    // Battery percentage, small, right of the icon (wide enough for "100%")
     char pct[6] = {};
     snprintf(pct, sizeof(pct), "%d%%", state->battery);
-    lv_canvas_draw_text(canvas, 20, 5, 30, &pct_dsc, pct);
+    lv_canvas_draw_text(canvas, 19, 5, 33, &pct_dsc, pct);
 
     // Link status with the central half
     lv_canvas_draw_text(canvas, 0, 0, CANVAS_SIZE, &label_dsc,
@@ -200,14 +211,10 @@ static void draw_top(lv_obj_t *widget, lv_color_t cbuf[], const struct status_st
     rotate_canvas(canvas, cbuf);
 }
 
-// fixed twinkle stars in the sky zone (x, y, phase)
-static const uint8_t BSTARS[6][3] = {
-    {6, 4, 1}, {20, 16, 4}, {34, 6, 0}, {50, 12, 3}, {62, 20, 5}, {12, 24, 2},
-};
-
-// Bottom: twinkling sky with shooting stars (top), segmented equalizer (bottom).
+// Equalizer: mirrored bars growing both ways from a centre line.
+// Drawn in rows y > 22 so it stays clear of the atom canvas above it.
 static void draw_bottom(lv_obj_t *widget, lv_color_t cbuf[], uint32_t frame) {
-    lv_obj_t *canvas = lv_obj_get_child(widget, 2);
+    lv_obj_t *canvas = lv_obj_get_child(widget, CHILD_EQ);
 
     lv_draw_rect_dsc_t rect_bg;
     init_rect_dsc(&rect_bg, LVGL_BACKGROUND);
@@ -216,41 +223,16 @@ static void draw_bottom(lv_obj_t *widget, lv_color_t cbuf[], uint32_t frame) {
 
     lv_canvas_draw_rect(canvas, 0, 0, CANVAS_SIZE, CANVAS_SIZE, &rect_bg);
 
-    // ---- twinkle stars across the full sky
-    for (int s = 0; s < 6; s++) {
-        if (((frame / 4) + BSTARS[s][2]) % 3 != 0) {
-            lv_canvas_draw_rect(canvas, BSTARS[s][0], BSTARS[s][1], 1, 1, &rect_fg);
-        }
-    }
-
-    // ---- a shooting star streaks across the sky every ~5 s
-    uint32_t cycle = frame / 50;
-    uint32_t p = frame % 50;
-    if (p < 12) {
-        int sx = 2 + (int)(cycle * 37 % 42);
-        int sy = 2 + (int)(cycle * 23 % 14);
-        for (int k = 0; k < 4; k++) { // head + fading tail
-            int tx = sx + (int)p * 4 - k * 4;
-            int ty = sy + (int)p * 2 - k * 2;
-            if (tx < 0 || tx > 66 || ty < 0 || ty > 26) {
-                continue;
-            }
-            int sz = (k == 0) ? 2 : 1;
-            lv_canvas_draw_rect(canvas, tx, ty, sz, sz, &rect_fg);
-        }
-    }
-
-    // ---- mirrored equalizer: thin bars grow up AND down from a center line
-    const int mid = 46, bw = 3, step = 5;
-    lv_canvas_draw_rect(canvas, 4, mid, 60, 1, &rect_fg); // center line, always on
+    const int mid = 44, bw = 3, step = 5;
+    lv_canvas_draw_rect(canvas, 4, mid, 60, 1, &rect_fg); // centre line, always on
     for (int i = 0; i < EQ_BARS; i++) {
         int x = 5 + i * step;
         int h = eq_levels[i];
         if (h > 0) {
-            lv_canvas_draw_rect(canvas, x, mid - h, bw, h, &rect_fg);     // above
-            lv_canvas_draw_rect(canvas, x, mid + 1, bw, h, &rect_fg);     // below
+            lv_canvas_draw_rect(canvas, x, mid - h, bw, h, &rect_fg); // above
+            lv_canvas_draw_rect(canvas, x, mid + 1, bw, h, &rect_fg); // below
         } else {
-            lv_canvas_draw_rect(canvas, x, mid - 1, bw, 3, &rect_fg);     // resting tick
+            lv_canvas_draw_rect(canvas, x, mid - 1, bw, 3, &rect_fg); // resting tick
         }
     }
 
@@ -348,15 +330,17 @@ int zmk_widget_status_init(struct zmk_widget_status *widget, lv_obj_t *parent) {
     widget->obj = lv_obj_create(parent);
     lv_obj_set_size(widget->obj, 160, 68);
 
-    lv_obj_t *top = lv_canvas_create(widget->obj);
-    lv_obj_align(top, LV_ALIGN_TOP_RIGHT, 0, 0);
-    lv_canvas_set_buffer(top, widget->cbuf, CANVAS_SIZE, CANVAS_SIZE, LV_IMG_CF_TRUE_COLOR);
-    lv_obj_t *middle = lv_canvas_create(widget->obj);
-    lv_obj_align(middle, LV_ALIGN_TOP_LEFT, 24, 0);
-    lv_canvas_set_buffer(middle, widget->cbuf2, CANVAS_SIZE, CANVAS_SIZE, LV_IMG_CF_TRUE_COLOR);
-    lv_obj_t *bottom = lv_canvas_create(widget->obj);
-    lv_obj_align(bottom, LV_ALIGN_TOP_LEFT, -44, 0);
-    lv_canvas_set_buffer(bottom, widget->cbuf3, CANVAS_SIZE, CANVAS_SIZE, LV_IMG_CF_TRUE_COLOR);
+    // Created in CHILD_* order; the atom comes last so it paints over the
+    // overlapping edges of the equalizer and info canvases.
+    lv_obj_t *eq = lv_canvas_create(widget->obj);
+    lv_obj_align(eq, LV_ALIGN_TOP_LEFT, 0, 0);
+    lv_canvas_set_buffer(eq, widget->cbuf3, CANVAS_SIZE, CANVAS_SIZE, LV_IMG_CF_TRUE_COLOR);
+    lv_obj_t *info = lv_canvas_create(widget->obj);
+    lv_obj_align(info, LV_ALIGN_TOP_RIGHT, 0, 0);
+    lv_canvas_set_buffer(info, widget->cbuf, CANVAS_SIZE, CANVAS_SIZE, LV_IMG_CF_TRUE_COLOR);
+    lv_obj_t *atom = lv_canvas_create(widget->obj);
+    lv_obj_align(atom, LV_ALIGN_TOP_LEFT, 46, 0); // centred on the 160 px screen
+    lv_canvas_set_buffer(atom, widget->cbuf2, CANVAS_SIZE, CANVAS_SIZE, LV_IMG_CF_TRUE_COLOR);
 
     sys_slist_append(&widgets, &widget->node);
     widget_battery_status_init();
