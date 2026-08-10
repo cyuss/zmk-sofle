@@ -7,5 +7,8 @@ on:
 
 jobs:
   build:
-    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
+    # Pinned to the same ZMK version as config/west.yml (v0.3.0):
+    # the @main workflow expects Zephyr 3.7+ boards (hwmv2 "qualifiers")
+    # and fails against v0.3.0's Zephyr 3.5.
+    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@v0.3.0
 
