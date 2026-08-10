@@ -141,11 +141,11 @@
 
         Symbols {
             bindings = <
-&trans     &trans     &trans        &trans             &trans      &trans            &trans  &trans                &trans                 &trans          &trans            &trans    &trans
-&kp GRAVE  &kp AT     &kp COLON     &kp HASH           &kp DOLLAR  &kp PERCENT       &trans  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp LBKT        &kp RBKT          &kp BSLH  &kp DELETE
-&trans     &kp EXCL   &kp QUESTION  &kp DOUBLE_QUOTES  &kp SQT     &kp MINUS         &trans  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp LEFT_BRACE  &kp RIGHT_BRACE   &kp PIPE  &kp CAPSLOCK
-&trans     &kp TILDE  &kp STAR      &kp EQUAL          &kp PLUS    &kp UNDERSCORE    &trans  &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &kp LESS_THAN   &kp GREATER_THAN  &kp FSLH  &trans
-&trans     &trans     &trans        &trans             &trans      &kp SPACE         &trans  &kp ENTER             &trans                 &trans          &trans            &trans
+&trans     &trans        &trans        &trans             &trans      &trans            &trans  &trans                &trans                 &trans          &trans            &trans         &trans
+&kp GRAVE  &kp AT        &kp COLON     &kp HASH           &kp DOLLAR  &kp PERCENT       &trans  &kp CARET             &kp AMPERSAND          &trans          &trans            &kp BSLH       &kp DELETE
+&trans     &kp EXCL      &kp QUESTION  &kp DOUBLE_QUOTES  &kp SQT     &kp MINUS         &trans  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp LEFT_BRACE  &kp RIGHT_BRACE   &kp PIPE       &kp CAPSLOCK
+&trans     &kp TILDE     &kp STAR      &kp EQUAL          &kp PLUS    &kp UNDERSCORE    &trans  &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &kp LESS_THAN   &kp GREATER_THAN  &kp FSLH       &trans
+&trans     &kp LEFT_ALT  &kp LEFT_GUI  &trans             &trans      &kp SPACE         &trans  &kp ENTER             &trans                 &trans          &kp RIGHT_GUI     &kp RIGHT_ALT
             >;
 
             display-name = "Symbols";
