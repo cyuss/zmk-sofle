@@ -128,11 +128,11 @@
 
         System {
             bindings = <
-&kp TILDE  &bt BT_SEL 0  &bt BT_SEL 1    &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &mmv MOVE_UP     &trans  &trans        &trans           &trans           &trans           &trans
-&trans     &bt BT_CLR    &bt BT_CLR_ALL  &trans        &trans        &trans          &mmv MOVE_DOWN   &trans  &trans        &rgb_ug RGB_SAD  &rgb_ug RGB_BRI  &rgb_ug RGB_TOG  &trans
-&trans     &out OUT_USB  &out OUT_BLE    &trans        &trans        &trans          &mmv MOVE_LEFT   &trans  &bl BL_CYCLE  &bl BL_DEC       &bl BL_INC       &bl BL_TOG       &trans
-&trans     &sys_reset    &trans          &bootloader   &trans        &trans          &mmv MOVE_RIGHT  &trans  &trans        &sys_reset       &soft_off        &bootloader      &trans
-&trans     &trans        &trans          &trans        &trans        &trans          &mkp LCLK        &trans  &trans        &trans           &trans           &trans
+&kp TILDE  &bt BT_SEL 0  &bt BT_SEL 1    &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &mmv MOVE_UP     &trans     &trans        &trans           &trans           &trans           &trans
+&trans     &bt BT_CLR    &bt BT_CLR_ALL  &trans        &trans        &trans          &mmv MOVE_DOWN   &trans     &trans        &rgb_ug RGB_SAD  &rgb_ug RGB_BRI  &rgb_ug RGB_TOG  &trans
+&trans     &out OUT_USB  &out OUT_BLE    &trans        &trans        &trans          &mmv MOVE_LEFT   &trans     &bl BL_CYCLE  &bl BL_DEC       &bl BL_INC       &bl BL_TOG       &trans
+&trans     &sys_reset    &trans          &bootloader   &trans        &trans          &mmv MOVE_RIGHT  &trans     &trans        &sys_reset       &soft_off        &bootloader      &trans
+&trans     &trans        &trans          &trans        &trans        &kp SPACE       &mkp LCLK        &kp ENTER  &trans        &trans           &trans           &trans
             >;
 
             display-name = "System";
@@ -145,7 +145,7 @@
 &kp GRAVE  &kp AT     &kp COLON     &kp HASH           &kp DOLLAR  &kp PERCENT       &trans  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp LBKT        &kp RBKT          &kp BSLH  &kp DELETE
 &trans     &kp EXCL   &kp QUESTION  &kp DOUBLE_QUOTES  &kp SQT     &kp MINUS         &trans  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp LEFT_BRACE  &kp RIGHT_BRACE   &kp PIPE  &kp CAPSLOCK
 &trans     &kp TILDE  &kp STAR      &kp EQUAL          &kp PLUS    &kp UNDERSCORE    &trans  &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &kp LESS_THAN   &kp GREATER_THAN  &kp FSLH  &trans
-&trans     &trans     &trans        &trans             &trans      &trans            &trans  &trans                &trans                 &trans          &trans            &trans
+&trans     &trans     &trans        &trans             &trans      &kp SPACE         &trans  &kp ENTER             &trans                 &trans          &trans            &trans
             >;
 
             display-name = "Symbols";
