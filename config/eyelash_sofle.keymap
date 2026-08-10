@@ -102,11 +102,11 @@
 
         Base {
             bindings = <
-&kp ESC                              &kp N1          &kp N2          &kp N3            &kp N4       &kp N5    &kp UP_ARROW     &kp N6  &kp N7       &kp N8             &kp N9           &kp N0              &kp BACKSPACE
-&kp TAB                              &kp Q           &kp W           &kp E             &kp R        &kp T     &kp DOWN_ARROW   &kp Y   &kp U        &kp I              &kp O            &kp P               &kp GRAVE
-&mt LG(LA(LS(LEFT_CONTROL))) ESCAPE  &hm LEFT_GUI A  &hm LEFT_ALT S  &hm LEFT_SHIFT D  &hm LCTRL F  &kp G     &kp LEFT_ARROW   &kp H   &hm RCTRL J  &hm RIGHT_SHIFT K  &hm RIGHT_ALT L  &hm RIGHT_GUI SEMI  &mt LG(LA(LS(LCTRL))) ESCAPE
-&kp LSHFT                            &kp Z           &kp X           &kp C             &kp V        &kp B     &kp RIGHT_ARROW  &kp N   &kp M        &kp COMMA          &kp DOT          &kp FSLH            &kp RIGHT_SHIFT
-&kp C_MUTE                           &kp LEFT_ALT    &kp LEFT_GUI    &to 4             &kp SPACE    &to 3     &kp ENTER        &to 1   &kp ENTER    &mo 2              &kp LEFT_GUI     &kp LEFT_ALT
+&kp ESC                              &kp N1          &kp N2          &kp N3            &kp N4       &kp N5       &kp UP_ARROW     &kp N6     &kp N7       &kp N8             &kp N9           &kp N0              &kp BACKSPACE
+&kp TAB                              &kp Q           &kp W           &kp E             &kp R        &kp T        &kp DOWN_ARROW   &kp Y      &kp U        &kp I              &kp O            &kp P               &kp GRAVE
+&mt LG(LA(LS(LEFT_CONTROL))) ESCAPE  &hm LEFT_GUI A  &hm LEFT_ALT S  &hm LEFT_SHIFT D  &hm LCTRL F  &kp G        &kp LEFT_ARROW   &kp H      &hm RCTRL J  &hm RIGHT_SHIFT K  &hm RIGHT_ALT L  &hm RIGHT_GUI SEMI  &mt LG(LA(LS(LCTRL))) ESCAPE
+&kp LSHFT                            &kp Z           &kp X           &kp C             &kp V        &kp B        &kp RIGHT_ARROW  &kp N      &kp M        &kp COMMA          &kp DOT          &kp FSLH            &kp RIGHT_SHIFT
+&kp C_MUTE                           &kp LEFT_ALT    &kp LEFT_GUI    &to 4             &to 3        &kp SPACE    &kp ENTER        &kp ENTER  &to 1        &mo 2              &kp RIGHT_GUI    &kp RIGHT_ALT
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOL_DN>;
@@ -115,11 +115,11 @@
 
         Nav {
             bindings = <
-&kp GRAVE                 &kp F1  &kp F2        &kp F3        &kp F4        &kp F5          &mmv MOVE_UP     &kp F6     &kp F7    &kp F8      &kp F9     &kp F10  &trans
-&trans                    &trans  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &trans          &mmv MOVE_DOWN   &kp PG_UP  &kp HOME  &kp UP      &kp END    &trans   &trans
-&trans                    &trans  &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &trans          &mmv MOVE_LEFT   &kp PG_DN  &kp LEFT  &kp DOWN    &kp RIGHT  &trans   &trans
-&trans                    &trans  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp NUMBER_0    &mmv MOVE_RIGHT  &trans     &trans    &kp INSERT  &kp F11    &kp F12  &trans
-&kp C_BRIGHTNESS_MAXIMUM  &trans  &trans        &trans        &trans        &trans          &mkp LCLK        &trans     &trans    &trans      &trans     &trans
+&kp GRAVE                 &kp F1        &kp F2        &kp F3        &kp F4        &kp F5          &mmv MOVE_UP     &kp F6     &kp F7    &kp F8      &kp F9         &kp F10        &trans
+&trans                    &trans        &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &trans          &mmv MOVE_DOWN   &kp PG_UP  &kp HOME  &kp UP      &kp END        &trans         &trans
+&trans                    &trans        &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &trans          &mmv MOVE_LEFT   &kp PG_DN  &kp LEFT  &kp DOWN    &kp RIGHT      &trans         &trans
+&trans                    &trans        &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp NUMBER_0    &mmv MOVE_RIGHT  &trans     &trans    &kp INSERT  &kp F11        &kp F12        &trans
+&kp C_BRIGHTNESS_MAXIMUM  &kp LEFT_ALT  &kp LEFT_GUI  &trans        &trans        &kp SPACE       &mkp LCLK        &kp ENTER  &trans    &trans      &kp RIGHT_GUI  &kp RIGHT_ALT
             >;
 
             display-name = "Nav";
@@ -141,11 +141,11 @@
 
         Symbols {
             bindings = <
-&trans  &trans     &trans        &trans             &trans      &trans            &trans  &trans                &trans                 &trans         &trans            &trans    &trans
-&trans  &kp AT     &kp COLON     &kp HASH           &kp DOLLAR  &kp PERCENT       &trans  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp LBKT       &kp RBKT          &kp BSLH  &trans
-&trans  &kp EXCL   &kp QUESTION  &kp DOUBLE_QUOTES  &kp SQT     &kp UNDERSCORE    &trans  &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp LESS_THAN  &kp GREATER_THAN  &kp PIPE  &trans
-&trans  &kp GRAVE  &kp STAR      &kp EQUAL          &kp PLUS    &kp MINUS         &trans  &kp CARET             &kp AMPS               &kp COMMA      &kp DOT           &kp FSLH  &trans
-&trans  &trans     &trans        &trans             &trans      &trans            &trans  &trans                &trans                 &trans         &trans            &trans
+&trans     &trans     &trans        &trans             &trans      &trans            &trans  &trans                &trans                 &trans          &trans            &trans    &trans
+&kp GRAVE  &kp AT     &kp COLON     &kp HASH           &kp DOLLAR  &kp PERCENT       &trans  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp LBKT        &kp RBKT          &kp BSLH  &kp DELETE
+&trans     &kp EXCL   &kp QUESTION  &kp DOUBLE_QUOTES  &kp SQT     &kp MINUS         &trans  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp LEFT_BRACE  &kp RIGHT_BRACE   &kp PIPE  &kp CAPSLOCK
+&trans     &kp TILDE  &kp STAR      &kp EQUAL          &kp PLUS    &kp UNDERSCORE    &trans  &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &kp LESS_THAN   &kp GREATER_THAN  &kp FSLH  &trans
+&trans     &trans     &trans        &trans             &trans      &trans            &trans  &trans                &trans                 &trans          &trans            &trans
             >;
 
             display-name = "Symbols";
