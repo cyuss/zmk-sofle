@@ -7,8 +7,8 @@
  *   top    : battery + link status
  *   middle : atom "Y" — pulsing nucleus, electrons with trails on three
  *            tilted elliptical orbits, twinkling stars in the background
- *   bottom : twinkling sky with shooting stars, and a segmented equalizer
- *            with peak-hold markers that reacts to this half's keypresses
+ *   bottom : a single-sided segmented equalizer that reacts to this half's
+ *            keypresses
  *
  */
 
@@ -56,8 +56,8 @@ static struct k_work_delayable anim_work;
 
 #define ATOM_CX 34
 #define ATOM_CY 34
-#define ATOM_A 30 // ellipse semi-major axis
-#define ATOM_B 11 // ellipse semi-minor axis
+#define ATOM_A 32 // ellipse semi-major axis
+#define ATOM_B 15 // ellipse semi-minor axis
 #define ORBIT_STEPS 36
 #define TRAIL_LEN 5
 
@@ -94,9 +94,9 @@ static void draw_atom(lv_obj_t *widget, lv_color_t cbuf[], uint32_t frame) {
     lv_draw_rect_dsc_t rect_fg;
     init_rect_dsc(&rect_fg, LVGL_FOREGROUND);
     lv_draw_line_dsc_t line_dsc;
-    init_line_dsc(&line_dsc, LVGL_FOREGROUND, 1);
+    init_line_dsc(&line_dsc, LVGL_FOREGROUND, 2);
     lv_draw_arc_dsc_t nucleus_dsc;
-    init_arc_dsc(&nucleus_dsc, LVGL_FOREGROUND, 1);
+    init_arc_dsc(&nucleus_dsc, LVGL_FOREGROUND, 2);
     lv_draw_label_dsc_t y_dsc;
     init_label_dsc(&y_dsc, LVGL_FOREGROUND, &lv_font_montserrat_20, LV_TEXT_ALIGN_CENTER);
 
@@ -130,18 +130,18 @@ static void draw_atom(lv_obj_t *widget, lv_color_t cbuf[], uint32_t frame) {
             lv_point_t e;
             ellipse_point(o, t, &e);
             if (k == 0) {
-                lv_canvas_draw_rect(canvas, e.x - 1, e.y - 1, 3, 3, &rect_fg); // head
+                lv_canvas_draw_rect(canvas, e.x - 2, e.y - 2, 5, 5, &rect_fg); // head
                 // occasional sparkle: a small 4-point flash around the electron
                 if (((frame + o * 3) % 10) < 2) {
-                    lv_canvas_draw_rect(canvas, e.x - 3, e.y, 1, 1, &rect_fg);
-                    lv_canvas_draw_rect(canvas, e.x + 3, e.y, 1, 1, &rect_fg);
-                    lv_canvas_draw_rect(canvas, e.x, e.y - 3, 1, 1, &rect_fg);
-                    lv_canvas_draw_rect(canvas, e.x, e.y + 3, 1, 1, &rect_fg);
+                    lv_canvas_draw_rect(canvas, e.x - 4, e.y, 2, 2, &rect_fg);
+                    lv_canvas_draw_rect(canvas, e.x + 4, e.y, 2, 2, &rect_fg);
+                    lv_canvas_draw_rect(canvas, e.x, e.y - 4, 2, 2, &rect_fg);
+                    lv_canvas_draw_rect(canvas, e.x, e.y + 4, 2, 2, &rect_fg);
                 }
             } else if (k < 3) {
-                lv_canvas_draw_rect(canvas, e.x, e.y, 2, 2, &rect_fg); // near trail
+                lv_canvas_draw_rect(canvas, e.x, e.y, 3, 3, &rect_fg); // near trail
             } else {
-                lv_canvas_draw_rect(canvas, e.x, e.y, 1, 1, &rect_fg); // far trail
+                lv_canvas_draw_rect(canvas, e.x, e.y, 2, 2, &rect_fg); // far trail
             }
         }
     }
@@ -150,7 +150,7 @@ static void draw_atom(lv_obj_t *widget, lv_color_t cbuf[], uint32_t frame) {
     {
         uint32_t rp = frame % 40;
         if (rp < 14) {
-            int rr = 14 + (int)rp;
+            int rr = 17 + (int)rp;
             int gap = 24 + (int)rp * 3; // ring dissolves as it expands
             for (int j = 0; j < 6; j++) {
                 lv_canvas_draw_arc(canvas, ATOM_CX, ATOM_CY, rr, 60 * j + gap / 2,
@@ -159,9 +159,9 @@ static void draw_atom(lv_obj_t *widget, lv_color_t cbuf[], uint32_t frame) {
         }
     }
 
-    // pulsing nucleus ring around the "Y" (radius breathes 11 -> 13)
+    // pulsing nucleus ring around the "Y" (radius breathes 13 -> 15)
     int pulse = (frame / 3) % 4;
-    int r = 11 + (pulse < 2 ? pulse : 4 - pulse);
+    int r = 13 + (pulse < 2 ? pulse : 4 - pulse);
     lv_canvas_draw_arc(canvas, ATOM_CX, ATOM_CY, r, 0, 360, &nucleus_dsc);
     lv_canvas_draw_text(canvas, 0, ATOM_CY - 10, CANVAS_SIZE, &y_dsc, "Y");
 
@@ -211,7 +211,7 @@ static void draw_top(lv_obj_t *widget, lv_color_t cbuf[], const struct status_st
     rotate_canvas(canvas, cbuf);
 }
 
-// Equalizer: mirrored bars growing both ways from a centre line.
+// Equalizer: single row of bars growing one way from a baseline.
 // Drawn in rows y > 22 so it stays clear of the atom canvas above it.
 static void draw_bottom(lv_obj_t *widget, lv_color_t cbuf[], uint32_t frame) {
     lv_obj_t *canvas = lv_obj_get_child(widget, CHILD_EQ);
@@ -223,16 +223,15 @@ static void draw_bottom(lv_obj_t *widget, lv_color_t cbuf[], uint32_t frame) {
 
     lv_canvas_draw_rect(canvas, 0, 0, CANVAS_SIZE, CANVAS_SIZE, &rect_bg);
 
-    const int mid = 44, bw = 3, step = 5;
-    lv_canvas_draw_rect(canvas, 4, mid, 60, 1, &rect_fg); // centre line, always on
+    const int base = 44, bw = 3, step = 5;
+    lv_canvas_draw_rect(canvas, 4, base, 60, 1, &rect_fg); // baseline, always on
     for (int i = 0; i < EQ_BARS; i++) {
         int x = 5 + i * step;
         int h = eq_levels[i];
         if (h > 0) {
-            lv_canvas_draw_rect(canvas, x, mid - h, bw, h, &rect_fg); // above
-            lv_canvas_draw_rect(canvas, x, mid + 1, bw, h, &rect_fg); // below
+            lv_canvas_draw_rect(canvas, x, base + 1, bw, h, &rect_fg);
         } else {
-            lv_canvas_draw_rect(canvas, x, mid - 1, bw, 3, &rect_fg); // resting tick
+            lv_canvas_draw_rect(canvas, x, base + 1, bw, 2, &rect_fg); // resting tick
         }
     }
 
