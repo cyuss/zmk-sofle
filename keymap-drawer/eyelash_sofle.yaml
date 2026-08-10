@@ -57,13 +57,13 @@ layers:
   - $$mdi:apple-keyboard-option$$
   - $$mdi:apple-keyboard-command$$
   - {t: Macros, h: toggle}
-  - $$mdi:keyboard-space$$
   - {t: Symbols, h: toggle}
+  - $$mdi:keyboard-space$$
+  - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: Nav, h: toggle}
-  - {t: '$$mdi:keyboard-return$$', type: enter}
   - System
-  - $$mdi:apple-keyboard-command$$
+  - RIGHT GUI
   - $$mdi:apple-keyboard-option$$
   Nav:
   - {t: '`', s: '~'}
@@ -119,17 +119,17 @@ layers:
   - F12
   - {t: '$$mdi:transfer$$', type: trans}
   - BRIGHTNESS MAXIMUM
+  - $$mdi:apple-keyboard-option$$
+  - $$mdi:apple-keyboard-command$$
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - $$mdi:keyboard-space$$
   - $$mdi:mouse-left-click-outline$$
+  - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - RIGHT GUI
+  - $$mdi:apple-keyboard-option$$
   System:
   - '~'
   - {h: '1', s: '$$mdi:bluetooth-connect$$'}
@@ -209,7 +209,7 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '`', s: '~'}
   - '@'
   - ':'
   - '#'
@@ -221,31 +221,31 @@ layers:
   - {t: '[', s: '{'}
   - {t: ']', s: '}'}
   - {t: \, s: '|'}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - $$mdi:backspace-reverse-outline$$
   - {t: '$$mdi:transfer$$', type: trans}
   - '!'
   - '?'
   - '"'
   - {t: '''', s: '"'}
-  - _
+  - {t: '-', s: _}
   - {t: '$$mdi:transfer$$', type: trans}
+  - (
+  - )
   - '{'
   - '}'
-  - <
-  - '>'
   - '|'
+  - $$mdi:apple-keyboard-caps$$
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '`', s: '~'}
+  - '~'
   - '*'
   - {t: '=', s: +}
   - +
-  - {t: '-', s: _}
+  - _
   - {t: '$$mdi:transfer$$', type: trans}
-  - ^
-  - '&'
-  - {t: ',', s: <}
-  - {t: ., s: '>'}
+  - {t: '[', s: '{'}
+  - {t: ']', s: '}'}
+  - <
+  - '>'
   - {t: /, s: '?'}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
