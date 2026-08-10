@@ -107,13 +107,13 @@ static void draw_top(lv_obj_t *widget, lv_color_t cbuf[], const struct status_st
 
     lv_canvas_draw_text(canvas, 0, 0, CANVAS_SIZE, &label_dsc, output_text);
 
-    // WPM graph frame — taller, no label, just the current value
-    lv_canvas_draw_rect(canvas, 0, 16, 68, 42, &rect_white_dsc);
-    lv_canvas_draw_rect(canvas, 1, 17, 66, 40, &rect_black_dsc);
+    // WPM graph frame — slim band, no label, just the current value
+    lv_canvas_draw_rect(canvas, 0, 20, 68, 28, &rect_white_dsc);
+    lv_canvas_draw_rect(canvas, 1, 21, 66, 26, &rect_black_dsc);
 
     char wpm_text[6] = {};
     snprintf(wpm_text, sizeof(wpm_text), "%d", state->wpm[9]);
-    lv_canvas_draw_text(canvas, 34, 19, 31, &label_dsc_wpm, wpm_text);
+    lv_canvas_draw_text(canvas, 34, 22, 31, &label_dsc_wpm, wpm_text);
 
     int max = 0;
     int min = 256;
@@ -132,17 +132,16 @@ static void draw_top(lv_obj_t *widget, lv_color_t cbuf[], const struct status_st
         range = 1;
     }
 
-    // Plot area: y in [31..55]
+    // Plot area: y in [32..45]
     lv_point_t points[10];
     for (int i = 0; i < 10; i++) {
         points[i].x = 3 + i * 7;
-        points[i].y = 55 - (state->wpm[i] - min) * 24 / range;
+        points[i].y = 45 - (state->wpm[i] - min) * 13 / range;
     }
 
-    // Dotted horizontal gridlines at 1/3 and 2/3 of the plot area
+    // Dotted horizontal gridline across the middle of the plot area
     for (int x = 3; x <= 64; x += 4) {
         lv_canvas_draw_rect(canvas, x, 39, 1, 1, &rect_white_dsc);
-        lv_canvas_draw_rect(canvas, x, 47, 1, 1, &rect_white_dsc);
     }
 
     // Dotted fill under the curve (dithered columns every 2 px)
@@ -154,7 +153,7 @@ static void draw_top(lv_obj_t *widget, lv_color_t cbuf[], const struct status_st
         int x0 = points[seg].x, y0 = points[seg].y;
         int x1 = points[seg + 1].x, y1 = points[seg + 1].y;
         int yc = y0 + (y1 - y0) * (x - x0) / (x1 - x0 == 0 ? 1 : x1 - x0);
-        for (int yy = yc + 2; yy <= 55; yy += 3) {
+        for (int yy = yc + 2; yy <= 45; yy += 3) {
             lv_canvas_draw_rect(canvas, x, yy, 1, 1, &rect_white_dsc);
         }
     }
