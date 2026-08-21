@@ -144,15 +144,13 @@
         };
 
         // console.log(), cursor left inside the parentheses
+
         LOG: LOG {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <10>;
             tap-ms = <10>;
-            bindings =
-                <&kp C &kp O &kp N &kp S &kp O &kp L &kp E &kp DOT &kp L &kp O &kp G>,
-                <&kp LPAR &kp RPAR &kp LEFT>;
-
+            bindings = <&kp C &kp O &kp N &kp S &kp O &kp L &kp E &kp DOT &kp L &kp O &kp G &kp LPAR &kp RPAR &kp LEFT>;
             label = "LOG";
         };
 
@@ -184,15 +182,13 @@
         };
 
         // git commit -m "" with the cursor between the quotes
+
         GIT_CM: GIT_CM {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <10>;
             tap-ms = <10>;
-            bindings =
-                <&kp G &kp I &kp T &kp SPACE &kp C &kp O &kp M &kp M &kp I &kp T>,
-                <&kp SPACE &kp MINUS &kp M &kp SPACE &kp DQT &kp DQT &kp LEFT>;
-
+            bindings = <&kp G &kp I &kp T &kp SPACE &kp C &kp O &kp M &kp M &kp I &kp T &kp SPACE &kp MINUS &kp M &kp SPACE &kp DQT &kp DQT &kp LEFT>;
             label = "GIT_CM";
         };
 
@@ -238,8 +234,8 @@
 
         Base {
             bindings = <
-&kp ESC                              &kp N1          &kp N2          &kp N3            &kp N4       &kp N5       &kp UP_ARROW     &kp N6     &kp N7       &kp N8             &kp N9           &kp N0              &kp BACKSPACE
-&kp TAB                              &kp Q           &kp W           &kp E             &kp R        &kp T        &kp DOWN_ARROW   &kp Y      &kp U        &kp I              &kp O            &kp P               &kp GRAVE
+&kp ESC                              &kp N1          &kp N2          &kp N3            &kp N4       &kp N5       &kp UP_ARROW     &kp N6     &kp N7       &kp N8             &kp N9           &kp N0              &kp DELETE
+&kp TAB                              &kp Q           &kp W           &kp E             &kp R        &kp T        &kp DOWN_ARROW   &kp Y      &kp U        &kp I              &kp O            &kp P               &kp BACKSPACE
 &mt LG(LA(LS(LEFT_CONTROL))) ESCAPE  &hm LEFT_GUI A  &hm LEFT_ALT S  &hm LEFT_SHIFT D  &hm LCTRL F  &kp G        &kp LEFT_ARROW   &kp H      &hm RCTRL J  &hm RIGHT_SHIFT K  &hm RIGHT_ALT L  &hm RIGHT_GUI SEMI  &mt LG(LA(LS(LCTRL))) ESCAPE
 &kp LSHFT                            &kp Z           &kp X           &kp C             &kp V        &kp B        &kp RIGHT_ARROW  &kp N      &kp M        &kp COMMA          &kp DOT          &kp FSLH            &kp RIGHT_SHIFT
 &kp C_MUTE                           &kp LEFT_ALT    &kp LEFT_GUI    &mo 4             &mo 3        &kp SPACE    &kp ENTER        &kp ENTER  &mo 1        &mo 2              &kp RIGHT_GUI    &kp RIGHT_ALT
@@ -266,9 +262,9 @@
             bindings = <
 &kp TILDE  &bt BT_SEL 0  &bt BT_SEL 1    &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &mmv MOVE_UP     &rgb_ug RGB_TOG  &rgb_ug RGB_EFR  &rgb_ug RGB_EFF  &rgb_ug RGB_HUD  &rgb_ug RGB_HUI  &rgb_ug RGB_COLOR_HSB(160,100,60)
 &trans     &bt BT_CLR    &bt BT_CLR_ALL  &trans        &trans        &trans          &mmv MOVE_DOWN   &rgb_ug RGB_SPD  &rgb_ug RGB_SPI  &rgb_ug RGB_SAD  &rgb_ug RGB_SAI  &rgb_ug RGB_BRD  &rgb_ug RGB_BRI
-&trans     &out OUT_USB  &out OUT_BLE    &trans        &trans        &trans          &mmv MOVE_LEFT   &trans     &bl BL_CYCLE  &bl BL_DEC       &bl BL_INC       &bl BL_TOG       &trans
-&trans     &sys_reset    &trans          &bootloader   &trans        &trans          &mmv MOVE_RIGHT  &trans     &trans        &sys_reset       &soft_off        &bootloader      &trans
-&trans     &trans        &trans          &trans        &trans        &kp SPACE       &mkp LCLK        &kp ENTER  &trans        &trans           &trans           &trans
+&trans     &out OUT_USB  &out OUT_BLE    &trans        &trans        &trans          &mmv MOVE_LEFT   &trans           &bl BL_CYCLE     &bl BL_DEC       &bl BL_INC       &bl BL_TOG       &trans
+&trans     &sys_reset    &trans          &bootloader   &trans        &trans          &mmv MOVE_RIGHT  &trans           &trans           &sys_reset       &soft_off        &bootloader      &trans
+&trans     &trans        &trans          &trans        &trans        &kp SPACE       &mkp LCLK        &kp ENTER        &trans           &trans           &trans           &trans
             >;
 
             display-name = "System";
