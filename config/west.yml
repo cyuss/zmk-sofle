@@ -2,16 +2,16 @@ manifest:
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
-      # Additional modules containing boards/shields/custom code can be listed here as well.
-      # See:
-      # - https://zmk.dev/docs/features/modules
-      # - https://docs.zephyrproject.org/3.5.0/develop/west/manifest.html#projects
-  #  - name: gpeye
-  #    url-base: https://github.com/GPeye
+    - name: gpeye
+      url-base: https://github.com/GPeye
+  # Additional modules containing boards/shields/custom code can be listed here
+  # as well. See https://zmk.dev/docs/features/modules
   projects:
-   # - name: mario-peripheral-animation
-   #   remote: gpeye
-   #    revision: main 
+    # Provides the nice_view_custom shield: the stock nice!view status widget
+    # on the central half, Hammerbeam's slideshow on the peripheral one.
+    - name: hammerbeam-slideshow
+      remote: gpeye
+      revision: main
     - name: eyelash_sofle
       url: https://github.com/a741725193/zmk-sofle
       revision: main
