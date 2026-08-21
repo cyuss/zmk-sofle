@@ -4,6 +4,8 @@ manifest:
       url-base: https://github.com/zmkfirmware
     - name: gpeye
       url-base: https://github.com/GPeye
+    - name: cyuss
+      url-base: https://github.com/cyuss
   # Additional modules containing boards/shields/custom code can be listed here
   # as well. See https://zmk.dev/docs/features/modules
   projects:
@@ -15,9 +17,12 @@ manifest:
     - name: eyelash_sofle
       url: https://github.com/a741725193/zmk-sofle
       revision: main
+    # Fork of zmkfirmware/zmk v0.3.0 carrying the extra underglow effects
+    # (rainbow, keypress reactive, per layer). Rebase it on a newer tag if you
+    # ever move off v0.3.0.
     - name: zmk
-      remote: zmkfirmware
-      revision: v0.3.0
+      remote: cyuss
+      revision: v0.3.0-rgb-effects
       import: app/west.yml
   self:
     path: boards
