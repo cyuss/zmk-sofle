@@ -95,6 +95,142 @@
             bindings = <&kp MINUS &kp GT>;
             label = "ARROW_R";
         };
+
+        // Unbound dev macros: assign them to keys wherever you like.
+
+        FAT_ARROW: FAT_ARROW {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            tap-ms = <10>;
+            bindings = <&kp EQUAL &kp GT>;
+            label = "FAT_ARROW";
+        };
+
+        EQ3: EQ3 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            tap-ms = <10>;
+            bindings = <&kp EQUAL &kp EQUAL &kp EQUAL>;
+            label = "EQ3";
+        };
+
+        NEQ3: NEQ3 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            tap-ms = <10>;
+            bindings = <&kp EXCL &kp EQUAL &kp EQUAL>;
+            label = "NEQ3";
+        };
+
+        FENCE: FENCE {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            tap-ms = <10>;
+            bindings = <&kp GRAVE &kp GRAVE &kp GRAVE>;
+            label = "FENCE";
+        };
+
+        TODO_CMT: TODO_CMT {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            tap-ms = <10>;
+            bindings = <&kp SLASH &kp SLASH &kp SPACE &kp LS(T) &kp LS(O) &kp LS(D) &kp LS(O) &kp COLON &kp SPACE>;
+            label = "TODO_CMT";
+        };
+
+        // console.log(), cursor left inside the parentheses
+        LOG: LOG {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            tap-ms = <10>;
+            bindings =
+                <&kp C &kp O &kp N &kp S &kp O &kp L &kp E &kp DOT &kp L &kp O &kp G>,
+                <&kp LPAR &kp RPAR &kp LEFT>;
+
+            label = "LOG";
+        };
+
+        GIT_ST: GIT_ST {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            tap-ms = <10>;
+            bindings = <&kp G &kp I &kp T &kp SPACE &kp S &kp T &kp A &kp T &kp U &kp S &kp ENTER>;
+            label = "GIT_ST";
+        };
+
+        GIT_DF: GIT_DF {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            tap-ms = <10>;
+            bindings = <&kp G &kp I &kp T &kp SPACE &kp D &kp I &kp F &kp F &kp ENTER>;
+            label = "GIT_DF";
+        };
+
+        GIT_ADD: GIT_ADD {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            tap-ms = <10>;
+            bindings = <&kp G &kp I &kp T &kp SPACE &kp A &kp D &kp D &kp SPACE &kp MINUS &kp LS(A) &kp ENTER>;
+            label = "GIT_ADD";
+        };
+
+        // git commit -m "" with the cursor between the quotes
+        GIT_CM: GIT_CM {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            tap-ms = <10>;
+            bindings =
+                <&kp G &kp I &kp T &kp SPACE &kp C &kp O &kp M &kp M &kp I &kp T>,
+                <&kp SPACE &kp MINUS &kp M &kp SPACE &kp DQT &kp DQT &kp LEFT>;
+
+            label = "GIT_CM";
+        };
+
+        GIT_PS: GIT_PS {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            tap-ms = <10>;
+            bindings = <&kp G &kp I &kp T &kp SPACE &kp P &kp U &kp S &kp H &kp ENTER>;
+            label = "GIT_PS";
+        };
+
+        GIT_PL: GIT_PL {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            tap-ms = <10>;
+            bindings = <&kp G &kp I &kp T &kp SPACE &kp P &kp U &kp L &kp L &kp ENTER>;
+            label = "GIT_PL";
+        };
+
+        CD_UP: CD_UP {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            tap-ms = <10>;
+            bindings = <&kp C &kp D &kp SPACE &kp DOT &kp DOT &kp ENTER>;
+            label = "CD_UP";
+        };
+
+        LS_LA: LS_LA {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            tap-ms = <10>;
+            bindings = <&kp L &kp S &kp SPACE &kp MINUS &kp L &kp A &kp ENTER>;
+            label = "LS_LA";
+        };
     };
 
     keymap {
@@ -128,8 +264,8 @@
 
         System {
             bindings = <
-&kp TILDE  &bt BT_SEL 0  &bt BT_SEL 1    &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &mmv MOVE_UP     &trans     &trans        &trans           &trans           &trans           &trans
-&trans     &bt BT_CLR    &bt BT_CLR_ALL  &trans        &trans        &trans          &mmv MOVE_DOWN   &trans     &rgb_ug RGB_EFR  &rgb_ug RGB_EFF  &rgb_ug RGB_SAD  &rgb_ug RGB_BRI  &rgb_ug RGB_TOG
+&kp TILDE  &bt BT_SEL 0  &bt BT_SEL 1    &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &mmv MOVE_UP     &rgb_ug RGB_TOG  &rgb_ug RGB_EFR  &rgb_ug RGB_EFF  &rgb_ug RGB_HUD  &rgb_ug RGB_HUI  &rgb_ug RGB_COLOR_HSB(160,100,60)
+&trans     &bt BT_CLR    &bt BT_CLR_ALL  &trans        &trans        &trans          &mmv MOVE_DOWN   &rgb_ug RGB_SPD  &rgb_ug RGB_SPI  &rgb_ug RGB_SAD  &rgb_ug RGB_SAI  &rgb_ug RGB_BRD  &rgb_ug RGB_BRI
 &trans     &out OUT_USB  &out OUT_BLE    &trans        &trans        &trans          &mmv MOVE_LEFT   &trans     &bl BL_CYCLE  &bl BL_DEC       &bl BL_INC       &bl BL_TOG       &trans
 &trans     &sys_reset    &trans          &bootloader   &trans        &trans          &mmv MOVE_RIGHT  &trans     &trans        &sys_reset       &soft_off        &bootloader      &trans
 &trans     &trans        &trans          &trans        &trans        &kp SPACE       &mkp LCLK        &kp ENTER  &trans        &trans           &trans           &trans
