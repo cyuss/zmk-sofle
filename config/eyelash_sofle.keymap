@@ -259,12 +259,13 @@
         };
 
         System {
-            // Nothing on the number row, Corne style. Left hand drives the
-            // pointer, right hand drives the lighting, middle column is the
-            // backlight, thumbs are the output. The four keys that cost you
+            // Nothing on the number row, Corne style — bar the middle
+            // column, which a Corne does not have either and which carries
+            // the light switches. Left hand drives the pointer, right hand
+            // the lighting, thumbs the output. The four keys that cost you
             // something if misfired sit alone in the corners.
             bindings = <
-&trans        &trans           &trans           &trans           &trans           &trans             &trans       &trans                 &trans                 &trans                  &trans                  &trans                  &trans
+&trans        &trans           &trans           &trans           &trans           &trans             &rgb_ug RGB_TINT  &trans            &trans                 &trans                  &trans                  &trans                  &trans
 &bt BT_CLR    &bt BT_SEL 0     &bt BT_SEL 1     &bt BT_SEL 2     &bt BT_SEL 3     &bt BT_SEL 4       &bl BL_TOG   &rgb_ug RGB_TOG        &rgb_ug RGB_EFR        &rgb_ug RGB_EFF         &rgb_ug RGB_HUD         &rgb_ug RGB_HUI         &rgb_ug RGB_COLOR_HSB(160,100,60)
 &bt BT_CLR_ALL &mmv MOVE_LEFT  &mmv MOVE_DOWN   &mmv MOVE_UP     &mmv MOVE_RIGHT  &trans             &bl BL_DEC   &rgb_ug RGB_SAD        &rgb_ug RGB_SAI        &rgb_ug RGB_BRD         &rgb_ug RGB_BRI         &rgb_ug RGB_SPD         &rgb_ug RGB_SPI
 &sys_reset    &SHIFT_MCLK      &mkp RCLK        &mkp MCLK        &mkp LCLK        &trans             &bl BL_INC   &rgb_ug RGB_EFS_CMD 4  &rgb_ug RGB_EFS_CMD 6  &rgb_ug RGB_EFS_CMD 12  &rgb_ug RGB_EFS_CMD 13  &soft_off               &bootloader
