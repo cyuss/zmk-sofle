@@ -57,11 +57,11 @@ layers:
   - $$mdi:apple-keyboard-option$$
   - $$mdi:apple-keyboard-command$$
   - Macros
-  - Symbols
+  - {t: '$$mdi:keyboard-esc$$', h: Symbols}
   - $$mdi:keyboard-space$$
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '$$mdi:keyboard-return$$', type: enter}
-  - Nav
+  - {t: '$$mdi:backspace$$', h: Nav}
   - System
   - RIGHT GUI
   - $$mdi:apple-keyboard-option$$
